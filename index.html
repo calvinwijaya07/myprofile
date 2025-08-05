@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<!-- data-theme="light" dan lang="id" adalah default, akan diubah oleh JS -->
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calvin Wijaya - Arsitek Strategi Hidup</title>
+    
+    <!-- Google Fonts: Poppins untuk tampilan modern dan bersih -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS yang digabungkan -->
+    <style>
+        :root {
+            /* Light Mode (Default) */
+            --primary-color: #006400; /* Dark Green */
+            --secondary-color: #3CB371; /* Medium Sea Green */
+            --bg-color: #F7F9F7;
+            --surface-color: #FFFFFF;
+            --text-color: #333333;
+            --heading-color: #1a1a1a;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.6);
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3CB371;
+            --secondary-color: #2E8B57;
+            --bg-color: #121212;
+            --surface-color: #1E1E1E;
+            --text-color: #E0E0E0;
+            --heading-color: #FFFFFF;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(30, 30, 30, 0.6);
+            --shadow-color: rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.7;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            color: var(--heading-color);
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); }
+        h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
+        p { margin-bottom: 1.5rem; }
+
+        .navbar {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            text-decoration: none;
+        }
+
+        .nav-menu { display: flex; align-items: center; }
+        .nav-links { display: flex; list-style: none; gap: 1.5rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--primary-color); }
+
+        .nav-controls { display: flex; align-items: center; gap: 1rem; margin-left: 2rem;}
+        .lang-switch {
+            display: flex;
+            background-color: var(--surface-color);
+            border-radius: 20px;
+            padding: 4px;
+            border: 1px solid var(--border-color);
+        }
+        .lang-switch button {
+            background: none; border: none; color: var(--text-color);
+            padding: 0.2rem 0.8rem; cursor: pointer; border-radius: 16px;
+            font-weight: 600; transition: background-color 0.3s, color 0.3s;
+        }
+        .lang-switch button.active { background-color: var(--primary-color); color: white; }
+
+        #theme-toggle {
+            background: none; border: none; cursor: pointer;
+            color: var(--text-color); padding: 0.5rem;
+        }
+        #theme-toggle .icon-sun { display: none; }
+        #theme-toggle .icon-moon { display: block; }
+        [data-theme="dark"] #theme-toggle .icon-sun { display: block; }
+        [data-theme="dark"] #theme-toggle .icon-moon { display: none; }
+
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .hamburger .bar {
+            display: block; width: 25px; height: 3px; margin: 5px auto;
+            transition: all 0.3s ease-in-out; background-color: var(--heading-color);
+            border-radius: 2px;
+        }
+
+        .hero-section {
+            padding: 6rem 0;
+            text-align: center;
+            background-color: var(--bg-color);
+        }
+
+        .hero-section .subtitle {
+            max-width: 650px; margin: 1rem auto 2.5rem auto;
+            font-size: 1.1rem;
+            opacity: 0.8;
+        }
+
+        .btn {
+            display: inline-block; padding: 0.8rem 2rem; border-radius: 50px;
+            text-decoration: none; font-weight: 600;
+            transition: all 0.3s ease; border: 2px solid transparent;
+        }
+        .btn-primary { background-color: var(--primary-color); color: #fff; }
+        .btn-primary:hover { background-color: var(--secondary-color); transform: translateY(-3px); }
+        .btn-secondary {
+            background-color: transparent; color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        .btn-secondary:hover { background-color: var(--primary-color); color: #fff; transform: translateY(-3px); }
+
+        .content-section { padding: 5rem 0; }
+        .bg-lighter {
+            background-color: var(--surface-color);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .content-section h2 { text-align: center; margin-bottom: 3rem; }
+        .content-section .section-intro {
+            text-align: center; max-width: 700px; margin: -2rem auto 3rem auto;
+            font-size: 1.1rem; opacity: 0.8;
+        }
+
+        .story-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .profile-photo {
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+            background-size: cover;
+            background-position: center;
+            border: 5px solid var(--surface-color);
+            box-shadow: 0 0 25px 0px var(--primary-color);
+            transition: box-shadow 0.3s ease;
+        }
+        .profile-photo:hover {
+            box-shadow: 0 0 35px 5px var(--primary-color);
+        }
+
+        .story-content h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            opacity: 0.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: var(--bg-color); padding: 2.5rem; border-radius: 15px;
+            text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px var(--shadow-color); }
+        .service-card h3 { color: var(--primary-color); margin-bottom: 1rem; }
+        .service-card .icon { margin-bottom: 1rem; color: var(--primary-color); }
+
+        .cta-container {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 2rem; align-items: stretch;
+        }
+        .cta-box {
+            background: var(--surface-color); padding: 2.5rem; border-radius: 15px;
+            text-align: center; border: 1px solid var(--border-color);
+            display: flex; flex-direction: column; justify-content: space-between;
+            box-shadow: 0 5px 20px var(--shadow-color);
+        }
+        .cta-box p { flex-grow: 1; }
+
+        .footer {
+            background: var(--surface-color); color: var(--text-color);
+            text-align: center; padding: 2.5rem 0; font-size: 0.9rem;
+            opacity: 0.7; border-top: 1px solid var(--border-color);
+        }
+
+        @media(max-width: 768px) {
+            .container { padding: 0 1.5rem; }
+            
+            .navbar .container > .nav-controls {
+                display: none;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 0;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                background-color: var(--bg-color);
+                width: 100%;
+                height: 100vh;
+                text-align: center;
+                transition: left 0.3s ease-in-out;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 2rem;
+                margin: 0;
+                padding: 0;
+            }
+            
+            .nav-menu .nav-controls {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                margin-top: 2rem;
+                margin-left: 0;
+            }
+
+            .hamburger { display: block; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
+            .story-container { grid-template-columns: 1fr; text-align: center; }
+            .profile-photo { width: 200px; height: 200px; padding-top: 0; margin: 0 auto 2rem auto; }
+
+            .cta-container { grid-template-columns: 1fr; }
+        }
+
+        .icon {
+            width: 48px; height: 48px; stroke-width: 1.5;
+            stroke: currentColor; fill: none;
+            stroke-linecap: round; stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="nav-brand" data-lang-key="brand">Calvin Wijaya</a>
+            
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li><a href="#kisah-gue" data-lang-key="nav_story">Kisah Gue</a></li>
+                    <li><a href="#untuk-siapa" data-lang-key="nav_who">Untuk Siapa?</a></li>
+                    <li><a href="#filosofi" data-lang-key="nav_philosophy">Filosofi</a></li>
+                    <li><a href="#mulai" data-lang-key="nav_start">Mulai</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <div class="lang-switch">
+                        <button id="lang-id" class="active">ID</button>
+                        <button id="lang-en">EN</button>
+                    </div>
+                    <button id="theme-toggle" aria-label="Toggle dark mode">
+                        <svg class="icon" style="width:24px; height:24px" viewBox="0 0 24 24"><path d="M12 12m-5 0a5 5 0 1 0 10 0a5 5 0 1 0 -10 0"></path><path d="M12 1v2"></path><path d="M12 21v2"></path><path d="M4.22 4.22l1.42 1.42"></path><path d="M18.36 18.36l1.42 1.42"></path><path d="M1 12h2"></path><path d="M21 12h2"></path><path d="M4.22 18.36l1.42 -1.42"></path><path d="M18.36 4.22l1.42 -1.42"></path></svg>
+                        <svg class="icon icon-moon" style="width:24px; height:24px" viewBox="0 0 24 24"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="hero-section">
+        <div class="container">
+            <h1 data-lang-key="hero_title">Punya 1001 Ide, Hasilnya Cuma Satu: Capek.</h1>
+            <p class="subtitle" data-lang-key="hero_subtitle">Jika kamu merasa lebih sibuk mikir daripada menghasilkan, selamat datang di klub. Aku mantan ketua klubnya.</p>
+            <a href="#mulai" class="btn btn-primary" data-lang-key="hero_button">Aku Siap Berubah</a>
+        </div>
+    </header>
+
+    <section id="kisah-gue" class="content-section">
+        <div class="container">
+            <div class="story-container">
+                <div class="profile-photo" style="background-image: url(pasfoto.png);">
+                </div>
+                <div class="story-content">
+                    <h3 data-lang-key="story_greeting">Kenalin, aku Calvin.</h3>
+                    <h2 data-lang-key="story_title">Aku Dulu Jago Banget Bikin Rencana... Sampai Akhirnya Jadi Wacana Selamanya.</h2>
+                    <p data-lang-key="story_p1">Aku pernah ada di posisi di mana jualan selalu boncos. Kreativitas nggak terarah. Ikut semua 'tips marketing' tapi malah ngerasa kayak penipu. Aku pikir solusinya adalah 'kerja lebih keras', padahal aku cuma makin stres dan kehabisan energi.</p>
+                    <p data-lang-key="story_p2">Sampai akhirnya aku 'kesasar' ke BaZi. Di situlah aku sadar, aku bukan payah. Aku cuma seorang 'pemikir' yang maksa jadi 'penjual'. Aku berhenti menyalahkan diri sendiri dan mulai merancang strategi yang 'gue banget'. Ketenangan inilah yang mau aku bagi ke kamu.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEKSI BARU: UNTUK SIAPA? -->
+    <section id="untuk-siapa" class="content-section bg-lighter">
+        <div class="container">
+            <h2 data-lang-key="who_title">Untuk Siapa Peta Ini?</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M7 21l5 -4l5 4l-1.5 -14.5l-7 0z"></path><path d="M10 13l-1.5 4.5"></path><path d="M14 13l1.5 4.5"></path><path d="M4.5 10.5l7.5 -7.5l7.5 7.5"></path></svg>
+                    <h3 data-lang-key="who_card1_title">Profesional & Pebisnis</h3>
+                    <p data-lang-key="who_card1_text">Dipakai korporat di Singapura hingga Eropa untuk rekrutmen dan strategi. Temukan kapan harus tancap gas, kapan bertahan, dan bagaimana cara leverage bisnismu.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M10.09 19.81c-2.338 -.76 -3.632 -2.1 -4.09 -3.81c-.502 -1.86 .216 -3.52 1.5 -5c1.284 -1.48 3.064 -2.33 5.5 -2c2.436 .33 4.216 1.52 5.5 3c1.284 1.48 2.002 3.14 1.5 5c-.502 1.86 -1.752 3.05 -4 3.8c-2.248 .75 -4.752 .75 -7 0z"></path><path d="M12 12m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M12 12v-6"></path></svg>
+                    <h3 data-lang-key="who_card2_title">Kamu yang Merasa 'Tersesat'</h3>
+                    <p data-lang-key="who_card2_text">Jika kamu merasa hampa, bingung dengan tujuan hidup, atau sekadar ingin mengenal diri lebih dalam. Peta ini membantumu menemukan kembali arah dari dalam dirimu sendiri.</p>
+                </div>
+                <div class="service-card">
+                    <svg class="icon" viewBox="0 0 24 24"><path d="M10 13a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path><path d="M15 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M17 7v-2"></path><path d="M5 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path><path d="M7 7v-2"></path></svg>
+                    <h3 data-lang-key="who_card3_title">Para Orang Tua</h3>
+                    <p data-lang-key="who_card3_text">Pahami bakat alami dan cara belajar anakmu. Berikan mereka dukungan yang paling tepat sasaran agar potensinya tidak sia-sia, tanpa harus memaksakan kehendak.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="filosofi" class="content-section">
+        <div class="container">
+            <h2 data-lang-key="philosophy_title">Bukan Ensiklopedia, Tapi Peta Strategis.</h2>
+            <p class="section-intro" data-lang-key="philosophy_intro">Banyak yang bisa kasih kamu 'data'. Tapi data tanpa strategi hanya akan membuatmu pusing. Filosofi kerjaku simpel:</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3 data-lang-key="philosophy_card1_title">🎯 Fokus Jangka Pendek</h3>
+                    <p data-lang-key="philosophy_card1_text">Kita fokus pada apa yang bisa kamu kerjakan <strong>sekarang</strong> untuk hasil nyata dalam 1-2 tahun ke depan. Bukan ramalan 10 tahun yang cuma jadi wacana.</p>
+                </div>
+                <div class="service-card">
+                    <h3 data-lang-key="philosophy_card2_title">🗺️ Rencana Aksi Jelas</h3>
+                    <p data-lang-key="philosophy_card2_text">Aku bantu ubah data BaZi yang rumit jadi daftar instruksi yang simpel dan bisa kamu kerjakan besok pagi. Gak ada lagi 'terus gue harus gimana?'.</p>
+                </div>
+                <div class="service-card">
+                    <h3 data-lang-key="philosophy_card3_title">⚙️ Bangun Sistem Pribadi</h3>
+                    <p data-lang-key="philosophy_card3_text">Khusus buat kamu yang energinya naik-turun, kita cari cara bikin 'sistem pendukung' biar tetap produktif tanpa harus maksain diri.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="mulai" class="content-section">
+        <div class="container">
+            <h2 data-lang-key="start_title">Udah Siap? Pilih Caramu Untuk Mulai.</h2>
+            <p class="section-intro" data-lang-key="start_intro">Setiap orang punya cara yang nyaman untuk memulai. Pilih jalur yang paling 'kamu banget' di bawah ini untuk masuk ke dalam lingkaranku.</p>
+            <div class="cta-container">
+                <div class="cta-box">
+                    <h3 data-lang-key="start_box1_title">Tim "Riset & Rangkai Kata"</h3>
+                    <p data-lang-key="start_box1_text">Kalau kamu tipe yang butuh waktu buat ngerangkai kata, jalur ini paling pas. Isi formulir untuk kesempatan jadi bagian dari <strong>Riset Komunitas Eksklusif</strong>-ku. Slot terbatas dan hanya untuk yang serius.</p>
+                    <a href="https://forms.gle/re3LN2e514GxWW2Z9" target="_blank" class="btn btn-secondary" data-lang-key="start_box1_button">Daftar via Formulir</a>
+                </div>
+                <div class="cta-box">
+                    <h3 data-lang-key="start_box2_title">Tim "Langsung Ngobrol"</h3>
+                    <p data-lang-key="start_box2_text">Buat kamu yang udah yakin dan mau diskusi lebih dalam tentang kemungkinan sesi strategis, langsung aja mulai obrolan santai via WhatsApp. Kita lihat dulu, apakah kita cocok dan aku bisa bantu masalahmu.</p>
+                    <a href="http://wa.me/6281376454298" target="_blank" class="btn btn-primary" data-lang-key="start_box2_button">Mulai Ngobrol di WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p data-lang-key="footer_text">&copy; 2025 Calvin Wijaya. Dibangun dengan strategi dan secangkir kopi.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langData = {
+                'id': {
+                    'brand': 'Calvin Wijaya',
+                    'nav_story': 'Kisah Gue',
+                    'nav_who': 'Untuk Siapa?',
+                    'nav_philosophy': 'Filosofi',
+                    'nav_start': 'Mulai',
+                    'hero_title': 'Punya 1001 Ide, Hasilnya Cuma Satu: Capek.',
+                    'hero_subtitle': 'Jika kamu merasa lebih sibuk mikir daripada menghasilkan, selamat datang di klub. Aku mantan ketua klubnya.',
+                    'hero_button': 'Aku Siap Berubah',
+                    'story_greeting': 'Kenalin, aku Calvin.',
+                    'story_title': 'Aku Dulu Jago Banget Bikin Rencana... Sampai Akhirnya Jadi Wacana Selamanya.',
+                    'story_p1': 'Aku pernah ada di posisi di mana jualan selalu boncos. Kreativitas nggak terarah. Ikut semua \'tips marketing\' tapi malah ngerasa kayak penipu. Aku pikir solusinya adalah \'kerja lebih keras\', padahal aku cuma makin stres dan kehabisan energi.',
+                    'story_p2': 'Sampai akhirnya aku \'kesasar\' ke BaZi. Di situlah aku sadar, aku bukan payah. Aku cuma seorang \'pemikir\' yang maksa jadi \'penjual\'. Aku berhenti menyalahkan diri sendiri dan mulai merancang strategi yang \'gue banget\'. Ketenangan inilah yang mau aku bagi ke kamu.',
+                    'who_title': 'Untuk Siapa Peta Ini?',
+                    'who_card1_title': 'Profesional & Pebisnis',
+                    'who_card1_text': 'Dipakai korporat di Singapura hingga Eropa untuk rekrutmen dan strategi. Temukan kapan harus tancap gas, kapan bertahan, dan bagaimana cara leverage bisnismu.',
+                    'who_card2_title': 'Kamu yang Merasa \'Tersesat\'',
+                    'who_card2_text': 'Jika kamu merasa hampa, bingung dengan tujuan hidup, atau sekadar ingin mengenal diri lebih dalam. Peta ini membantumu menemukan kembali arah dari dalam dirimu sendiri.',
+                    'who_card3_title': 'Para Orang Tua',
+                    'who_card3_text': 'Pahami bakat alami dan cara belajar anakmu. Berikan mereka dukungan yang paling tepat sasaran agar potensinya tidak sia-sia, tanpa harus memaksakan kehendak.',
+                    'philosophy_title': 'Bukan Ensiklopedia, Tapi Peta Strategis.',
+                    'philosophy_intro': 'Banyak yang bisa kasih kamu \'data\'. Tapi data tanpa strategi hanya akan membuatmu pusing. Filosofi kerjaku simpel:',
+                    'philosophy_card1_title': '🎯 Fokus Jangka Pendek',
+                    'philosophy_card1_text': 'Kita fokus pada apa yang bisa kamu kerjakan <strong>sekarang</strong> untuk hasil nyata dalam 1-2 tahun ke depan. Bukan ramalan 10 tahun yang cuma jadi wacana.',
+                    'philosophy_card2_title': '🗺️ Rencana Aksi Jelas',
+                    'philosophy_card2_text': 'Aku bantu ubah data BaZi yang rumit jadi daftar instruksi yang simpel dan bisa kamu kerjakan besok pagi. Gak ada lagi \'terus gue harus gimana?\'.',
+                    'philosophy_card3_title': '⚙️ Bangun Sistem Pribadi',
+                    'philosophy_card3_text': 'Khusus buat kamu yang energinya naik-turun, kita cari cara bikin \'sistem pendukung\' biar tetap produktif tanpa harus maksain diri.',
+                    'start_title': 'Udah Siap? Pilih Caramu Untuk Mulai.',
+                    'start_intro': 'Setiap orang punya cara yang nyaman untuk memulai. Pilih jalur yang paling \'kamu banget\' di bawah ini untuk masuk ke dalam lingkaranku.',
+                    'start_box1_title': 'Tim "Riset & Rangkai Kata"',
+                    'start_box1_text': 'Kalau kamu tipe yang butuh waktu buat ngerangkai kata, jalur ini paling pas. Isi formulir untuk kesempatan jadi bagian dari <strong>Riset Komunitas Eksklusif</strong>-ku. Slot terbatas dan hanya untuk yang serius.',
+                    'start_box1_button': 'Daftar via Formulir',
+                    'start_box2_title': 'Tim "Langsung Ngobrol"',
+                    'start_box2_text': 'Buat kamu yang udah yakin dan mau diskusi lebih dalam tentang kemungkinan sesi strategis, langsung aja mulai obrolan santai via WhatsApp. Kita lihat dulu, apakah kita cocok dan aku bisa bantu masalahmu.',
+                    'start_box2_button': 'Mulai Ngobrol di WhatsApp',
+                    'footer_text': '&copy; 2025 Calvin Wijaya. Dibangun dengan strategi dan secangkir kopi.'
+                },
+                'en': {
+                    'brand': 'Calvin Wijaya',
+                    'nav_story': 'My Story',
+                    'nav_who': 'Who Is It For?',
+                    'nav_philosophy': 'Philosophy',
+                    'nav_start': 'Start',
+                    'hero_title': '1001 Ideas, Only One Result: Burnout.',
+                    'hero_subtitle': 'If you feel busier thinking than producing, welcome to the club. I\'m the former president.',
+                    'hero_button': 'I\'m Ready for a Change',
+                    'story_greeting': 'Hi, I\'m Calvin.',
+                    'story_title': 'I Was Great at Making Plans... Until They Became Just Plans.',
+                    'story_p1': 'I\'ve been in a position where sales always failed. Creativity was all over the place. I followed all the \'marketing tips\' but ended up feeling like a fraud. I thought the solution was to \'work harder\', but I only got more stressed and drained.',
+                    'story_p2': 'Then I stumbled upon BaZi. That\'s when I realized I wasn\'t a failure; I was just a \'thinker\' forcing myself to be a \'seller\'. I stopped blaming myself and started designing a strategy that was authentically \'me\'. This is the peace of mind I want to share with you.',
+                    'who_title': 'Who Is This Map For?',
+                    'who_card1_title': 'Professionals & Business Owners',
+                    'who_card1_text': 'Used by corporations from Singapore to Europe for recruitment and strategy. Find out when to accelerate, when to hold back, and how to leverage your business.',
+                    'who_card2_title': 'For Those Who Feel \'Lost\'',
+                    'who_card2_text': 'If you feel empty, confused about your life\'s purpose, or simply want to know yourself deeper. This map helps you rediscover direction and meaning from within.',
+                    'who_card3_title': 'For Parents',
+                    'who_card3_text': 'Understand your child\'s natural talents and learning style. Provide them with the most targeted support so their potential isn\'t wasted, without forcing your own will.',
+                    'philosophy_title': 'Not an Encyclopedia, But a Strategic Map.',
+                    'philosophy_intro': 'Many can give you \'data\'. But data without strategy is just noise. My work philosophy is simple:',
+                    'philosophy_card1_title': '🎯 Short-Term Focus',
+                    'philosophy_card1_text': 'We focus on what you can do <strong>now</strong> to get real results in the next 1-2 years. Not a 10-year forecast that just becomes a fantasy.',
+                    'philosophy_card2_title': '🗺️ Clear Action Plan',
+                    'philosophy_card2_text': 'I help translate complex BaZi data into a simple to-do list you can start tomorrow. No more \'so, what should I do now?\'.',
+                    'philosophy_card3_title': '⚙️ Build Personal Systems',
+                    'philosophy_card3_text': 'Especially for those with fluctuating energy, we find ways to build \'support systems\' to stay productive without forcing it.',
+                    'start_title': 'Ready to Start? Choose Your Path.',
+                    'start_intro': 'Everyone has a comfortable way to begin. Choose the path that feels most \'you\' below to enter my circle.',
+                    'start_box1_title': 'The "Deep Thinker" Team',
+                    'start_box1_text': 'If you need time to arrange your thoughts, this path is perfect. Fill out the form for a chance to be part of my <strong>Exclusive Community Research</strong>. Slots are limited and for serious applicants only.',
+                    'start_box1_button': 'Apply via Form',
+                    'start_box2_title': 'The "Let\'s Talk" Team',
+                    'start_box2_text': 'For those who are ready and want to discuss a strategic session, let\'s start a casual chat on WhatsApp. We\'ll see if we\'re a good fit and if I can truly help with your problem.',
+                    'start_box2_button': 'Start a Chat on WhatsApp',
+                    'footer_text': '&copy; 2025 Calvin Wijaya. Built with strategy and a cup of coffee.'
+                }
+            };
+
+            const themeToggleButton = document.getElementById('theme-toggle');
+            const langIdButton = document.getElementById('lang-id');
+            const langEnButton = document.getElementById('lang-en');
+            const hamburger = document.querySelector(".hamburger");
+            const navMenu = document.querySelector(".nav-menu");
+
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+
+            themeToggleButton.addEventListener('click', () => {
+                let newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+
+            const updateLanguage = (lang) => {
+                document.documentElement.lang = lang;
+                document.querySelectorAll('[data-lang-key]').forEach(element => {
+                    const key = element.getAttribute('data-lang-key');
+                    if (langData[lang][key]) {
+                        element.innerHTML = langData[lang][key];
+                    }
+                });
+
+                if (lang === 'id') {
+                    langIdButton.classList.add('active');
+                    langEnButton.classList.remove('active');
+                } else {
+                    langEnButton.classList.add('active');
+                    langIdButton.classList.remove('active');
+                }
+            };
+
+            langIdButton.addEventListener('click', () => {
+                updateLanguage('id');
+                localStorage.setItem('language', 'id');
+            });
+
+            langEnButton.addEventListener('click', () => {
+                updateLanguage('en');
+                localStorage.setItem('language', 'en');
+            });
+
+            const currentLang = localStorage.getItem('language') || 'id';
+            updateLanguage(currentLang);
+
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("active");
+                navMenu.classList.toggle("active");
+            });
+
+            document.querySelectorAll(".nav-links li a").forEach(n => n.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            }));
+        });
+    </script>
+</body>
+</html>
