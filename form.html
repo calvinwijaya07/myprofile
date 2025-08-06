@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Peta Strategi - Calvin Wijaya</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Variabel warna dan font dari landing page kamu */
+        :root {
+            --primary-color: #006400;
+            --secondary-color: #3CB371;
+            --bg-color: #F7F9F7;
+            --surface-color: #FFFFFF;
+            --text-color: #333333;
+            --heading-color: #1a1a1a;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --font-heading: 'Poppins', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3CB371;
+            --secondary-color: #2E8B57;
+            --bg-color: #121212;
+            --surface-color: #1E1E1E;
+            --text-color: #E0E0E0;
+            --heading-color: #FFFFFF;
+            --border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Menerapkan variabel ke body */
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* Custom style untuk input agar konsisten */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(60, 179, 113, 0.3);
+        }
+
+        /* Styling untuk radio dan checkbox */
+        .form-checkbox, .form-radio {
+            accent-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto max-w-3xl px-4 py-12 sm:py-16">
+        
+        <!-- Header Formulir -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-bold mb-3" style="color: var(--heading-color);">Mulai dari Sini: Formulir Peta Strategi Kamu</h1>
+            <p class="text-base sm:text-lg opacity-80">Salam kenal, Calvin di sini. Terima kasih sudah memilih jalur ini.</p>
+        </div>
+
+        <!-- Intro/Deskripsi -->
+        <div class="mb-10 p-6 rounded-lg" style="background-color: var(--surface-color); border: 1px solid var(--border-color);">
+            <p class="mb-4">Formulir ini aku rancang bukan buat basa-basi. Ini adalah langkah pertama buat kita berdua. Buat kamu, ini kesempatan untuk berhenti sejenak dan memetakan kebingungan yang ada di kepala. Buat aku, ini cara buat mengerti dari mana kita harus mulai.</p>
+            <div class="p-4 rounded-md" style="background-color: var(--bg-color);">
+                <h3 class="font-semibold mb-2" style="color: var(--heading-color);">Satu hal yang wajib kamu tahu sebelum lanjut:</h3>
+                <p class="text-sm opacity-90">Aku pakai BaZi sebagai <em>tools</em> strategis. Anggap aja kayak baca data Google Analytics, tapi buat hidup kamu. Kita cari pola, kita cari <em>leverage</em>, kita cari celah. <strong>Ini bukan soal ramalan, klenik, atau jawaban instan.</strong> Hasilnya bakal nol besar kalau kamu sendiri nggak mau gerak. Kalau kamu siap 'ngoprek' peta diri dan ngerjain 'PR'-nya, silakan lanjut.</p>
+            </div>
+        </div>
+
+        <!-- Mulai Form -->
+        <!-- Ganti YOUR_FORM_ACTION dengan URL dari layanan form (misal: Formspree) -->
+        <form action="https://formspree.io/f/mdkdpnnr" method="POST" class="space-y-8">
+
+            <!-- Bagian 1: Info Dasar -->
+            <fieldset class="space-y-6 p-6 rounded-lg" style="background-color: var(--surface-color); border: 1px solid var(--border-color);">
+                <legend class="text-xl font-semibold px-2" style="color: var(--heading-color);">1. Info Dasar Kamu</legend>
+
+                <div>
+                    <label for="nama" class="block text-sm font-medium mb-1">Nama Panggilan Kamu? *</label>
+                    <input type="text" id="nama" name="nama" class="form-input" placeholder="Biar ngobrolnya lebih enak" required>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-1">Email Aktif Kamu? *</label>
+                        <input type="email" id="email" name="email" class="form-input" placeholder="email@kamu.com" required>
+                    </div>
+                    <div>
+                        <label for="whatsapp" class="block text-sm font-medium mb-1">Nomor WhatsApp Kamu? *</label>
+                        <input type="tel" id="whatsapp" name="whatsapp" class="form-input" placeholder="0812xxxxxxxx" required>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-3 gap-6">
+                    <div>
+                        <label for="tanggal_lahir" class="block text-sm font-medium mb-1">Tanggal Lahir *</label>
+                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-input" required>
+                    </div>
+                    <div>
+                        <label for="jam_lahir" class="block text-sm font-medium mb-1">Jam Lahir *</label>
+                        <input type="text" id="jam_lahir" name="jam_lahir" class="form-input" placeholder="Contoh: 07:30 atau Pagi" required>
+                        <p class="text-xs opacity-60 mt-1">Penting untuk akurasi. Beri perkiraan jika tidak tahu pasti.</p>
+                    </div>
+                    <div>
+                        <label for="kota_lahir" class="block text-sm font-medium mb-1">Kota Kelahiran *</label>
+                        <input type="text" id="kota_lahir" name="kota_lahir" class="form-input" placeholder="Contoh: Medan" required>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Bagian 2: Bedah Masalah -->
+            <fieldset class="space-y-6 p-6 rounded-lg" style="background-color: var(--surface-color); border: 1px solid var(--border-color);">
+                <legend class="text-xl font-semibold px-2" style="color: var(--heading-color);">2. Bedah Masalah Kamu</legend>
+                
+                <div>
+                    <label for="judul_bab" class="block text-sm font-medium mb-1">Kalau hidup kamu itu buku, judul bab yang lagi kamu jalanin sekarang apa? *</label>
+                    <textarea id="judul_bab" name="judul_bab" rows="3" class="form-input" placeholder="Contoh: Bab 5: Kayaknya Aku Salah Jurusan, atau Bab 10: Bisnis Jalan di Tempat..." required></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">Area mana yang paling 'kebakaran' dan pengen kamu beresin duluan? (Pilih 1-2) *</label>
+                    <div class="space-y-2">
+                        <div class="flex items-center"><input type="checkbox" id="area_karier" name="area[]" value="Karier & Duit" class="form-checkbox h-4 w-4 mr-2"><label for="area_karier">Karier & Duit: Stuck, pengen pindah haluan, bingung naikin pendapatan.</label></div>
+                        <div class="flex items-center"><input type="checkbox" id="area_bisnis" name="area[]" value="Bisnis & Usaha" class="form-checkbox h-4 w-4 mr-2"><label for="area_bisnis">Bisnis & Usaha: Marketing boncos, bingung nentuin arah, susah ngatur tim.</label></div>
+                        <div class="flex items-center"><input type="checkbox" id="area_potensi" name="area[]" value="Potensi Diri" class="form-checkbox h-4 w-4 mr-2"><label for="area_potensi">Potensi Diri: Ngerasa bisa banyak hal, tapi nggak ada yang jadi 'superpower'.</label></div>
+                        <div class="flex items-center"><input type="checkbox" id="area_asmara" name="area[]" value="Asmara & Hubungan" class="form-checkbox h-4 w-4 mr-2"><label for="area_asmara">Asmara & Hubungan: Ngerasa pola dramanya gitu-gitu aja, capek.</label></div>
+                        <div class="flex items-center"><input type="checkbox" id="area_energi" name="area[]" value="Energi & Mental" class="form-checkbox h-4 w-4 mr-2"><label for="area_energi">Energi & Mental: Gampang burnout, mood naik-turun, susah konsisten.</label></div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="usaha_sebelumnya" class="block text-sm font-medium mb-1">Buat ngatasin masalah di atas, kamu udah pernah coba cara apa aja & kenapa belum berhasil? *</label>
+                    <textarea id="usaha_sebelumnya" name="usaha_sebelumnya" rows="3" class="form-input" placeholder="Aku perlu tau ini biar kita nggak ngulangin kesalahan yang sama." required></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Bagian 3: Komitmen -->
+            <fieldset class="space-y-6 p-6 rounded-lg" style="background-color: var(--surface-color); border: 1px solid var(--border-color);">
+                <legend class="text-xl font-semibold px-2" style="color: var(--heading-color);">3. Komitmen & Langkah Berikutnya</legend>
+
+                <div>
+                    <label class="block text-sm font-medium mb-2">Soal Komitmen Kamu *</label>
+                    <p class="text-sm opacity-80 mb-3">Sesi strategi yang benar-benar mengubah butuh komitmen lebih dari sekadar biaya. Ini adalah <strong>investasi waktu</strong> kamu untuk refleksi, <strong>investasi energi</strong> kamu untuk berubah, dan <strong>investasi finansial</strong> untuk mendapatkan peta dan bimbingan yang tepat. Aku perlu tahu kesiapan kamu di level mana:</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center"><input type="radio" id="komitmen_siap" name="komitmen" value="Siap Berkomitmen Penuh" class="form-radio h-4 w-4 mr-2" required><label for="komitmen_siap">Aku Siap Berkomitmen Penuh: Siap menginvestasikan waktu, energi, dan biaya yang diperlukan.</label></div>
+                        <div class="flex items-center"><input type="radio" id="komitmen_ragu" name="komitmen" value="Masih Ingin Tahu" class="form-radio h-4 w-4 mr-2"><label for="komitmen_ragu">Aku Masih Ingin Tahu Lebih Banyak: Belum siap investasi finansial, tapi ingin ngobrol dulu.</label></div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="sumber_info" class="block text-sm font-medium mb-1">Dapat info soal sesi ini dari mana?</label>
+                    <select id="sumber_info" name="sumber_info" class="form-input">
+                        <option>Pilih salah satu...</option>
+                        <option>Instagram</option>
+                        <option>TikTok</option>
+                        <option>Rekomendasi Teman</option>
+                        <option>Lainnya</option>
+                    </select>
+                </div>
+            </fieldset>
+
+            <!-- Persetujuan & Tombol Submit -->
+            <div class="pt-4">
+                <div class="flex items-start mb-6">
+                    <input id="persetujuan" name="persetujuan" type="checkbox" class="form-checkbox h-5 w-5 mr-3 mt-1" required>
+                    <label for="persetujuan" class="text-sm">Saya sudah membaca dan mengisi semuanya dengan jujur. Saya mengerti form ini adalah langkah awal, dan kelanjutannya adalah obrolan di WhatsApp untuk menentukan apakah kita bisa lanjut bekerja sama atau tidak. *</label>
+                </div>
+
+                <button type="submit" class="w-full text-white font-bold py-3 px-4 rounded-full transition-all duration-300 hover:opacity-90 hover:-translate-y-1" style="background-color: var(--primary-color);">
+                    Kirim Formulir & Mulai Diskusi
+                </button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
