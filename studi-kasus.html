@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studi Kasus Klien - BaZi Strategi</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* Menggunakan CSS yang mirip dengan halaman utama untuk konsistensi */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.7;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        :root {
+            --primary-color: #1A4D2E;
+            --secondary-color: #4F6F52;
+            --bg-color: #F8F9FA;
+            --surface-color: #FFFFFF;
+            --text-color: #495057;
+            --heading-color: #212529;
+            --border-color: #E9ECEF;
+            --shadow-color: rgba(0, 0, 0, 0.07);
+        }
+        .container { max-width: 900px; margin: auto; padding: 0 2rem; }
+        
+        /* Header Sederhana */
+        .page-header {
+            padding: 2rem 0;
+            text-align: center;
+            background-color: var(--surface-color);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 4rem;
+        }
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--heading-color);
+            margin-bottom: 0.5rem;
+        }
+        .page-header .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Layout Studi Kasus */
+        .case-study {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+        .case-study:last-of-type {
+            margin-bottom: 2rem;
+        }
+
+        .case-study-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 2rem;
+        }
+        .case-study-header .main-quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+        }
+        .case-study-header .client-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .case-study-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2.5rem;
+            align-items: flex-start;
+        }
+        
+        .client-screenshot img {
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .story-details h3 {
+            font-size: 1.3rem;
+            color: var(--heading-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+        }
+        .story-details .pain-point, .story-details .solution {
+            margin-bottom: 2rem;
+        }
+        .story-details ul {
+            list-style-position: inside;
+            padding-left: 0;
+        }
+        .story-details ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* CTA di akhir halaman */
+        .final-cta {
+            background-color: var(--heading-color);
+            color: var(--surface-color);
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 16px;
+            margin: 4rem 0;
+        }
+        .final-cta h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .final-cta p { margin-bottom: 2rem; opacity: 0.8; }
+        .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 2.2rem; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; border: 2px solid transparent; }
+        .btn-primary { background-color: #fff; color: var(--primary-color); }
+        .btn-primary:hover { background-color: var(--bg-color); transform: translateY(-4px); }
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+            .client-screenshot {
+                margin-bottom: 2rem;
+            }
+            .case-study {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="page-header">
+        <div class="container">
+            <h1>Kisah Sukses Klien</h1>
+            <p class="breadcrumb">
+                <a href="index.html">&larr; Kembali ke Halaman Utama</a>
+            </p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- TEMPLATE STUDI KASUS 1 (Tiel Z.) -->
+        <!-- Kamu bisa copy-paste seluruh blok <article> ini untuk klien lain -->
+        <article class="case-study" id="tiel">
+            <header class="case-study-header">
+                <blockquote class="main-quote">
+                    “Thank you so much that was really spot on! Yeah I think a lot! My anxiety even kicked in late last year and last month because of it. But now I am better”
+                </blockquote>
+                <cite class="client-name">~ Tiel Z., Filipina</cite>
+            </header>
+
+            <div class="case-study-content">
+                <div class="client-screenshot">
+                    <!-- Ganti src dengan link screenshot chatmu -->
+                    <img src="testi 1.jpg" alt="Screenshot testimoni dari Tiel">
+                </div>
+                <div class="story-details">
+                    <div class="context">
+                        <h3>Konteks Persoalan</h3>
+                        <p>Tiel ini lagi galau di persimpangan jalan. Dulu pernah cuan dari main kripto, tapi berhenti karena ada urusan pribadi. Pas coba bisnis lain, eh malah zonk. Sekarang dia bingung, mending balik lagi ke dunia kripto yang naik-turunnya kayak roller coaster, atau coba bisnis baru lagi dari nol?</p>
+                    </div>
+                    <div class="pain-point">
+                        <h3>Pain Point Utama</h3>
+                        <ul>
+                            <li>&#10148; <strong>Bingung Milih Sampai Gak Bisa Gerak:</strong> Kebanyakan mikir antara dua pilihan, akhirnya malah diam di tempat.</li>
+                            <li>&#10148; <strong>Jadi Ragu Sama Diri Sendiri:</strong> Pengalaman bisnis yang gagal kemarin bikin dia mikir, "Feeling aku bener gak sih buat milih jalan?"</li>
+                            <li>&#10148; <strong>Takut Boncos Lagi:</strong> Trauma kalau langkah berikutnya malah buang-buang waktu, tenaga, dan duit lagi.</li>
+                        </ul>
+                    </div>
+                    <div class="solution">
+                        <h3>Output & Solusi Strategis</h3>
+                        <p>Setelah sesi <strong>Blueprint</strong>, Tiel jadi:</p>
+                        <ul>
+                            <li>&#10004; <strong>Dapat Lampu Hijau:</strong> Dari chart BaZi-nya, kelihatan jelas kalau energinya 'klik' banget sama dunia kripto. Keraguannya langsung hilang.</li>
+                            <li>&#10004; <strong>Akhirnya 'Ngeh' Kenapa Gagal:</strong> Dia jadi sadar bisnisnya yang kemarin gagal itu bukan karena dia nggak becus, tapi karena model bisnisnya nggak 'sefrekuensi' sama karakter dan timing dia.</li>
+                            <li>&#10004; <strong>Punya Contekan Strategi:</strong> Tiel jadi tahu kapan waktu terbaik buat 'serok' di kripto lagi dan gimana cara main amannya sesuai karakter dia.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- TEMPLATE STUDI KASUS 2 (Klien Anonim) -->
+        <article class="case-study" id="reine">
+            <header class="case-study-header">
+                <blockquote class="main-quote">
+                    “Your report is very helpful. Now I can clearly watch my steps. Before, I taught 2025 is a very good year to start a business since I'm in my luck pillar.”
+                </blockquote>
+                <cite class="client-name">~ Reine, Aljajair</cite>
+            </header>
+            <div class="case-study-content">
+                <div class="client-screenshot">
+                    <img src="testi 2.jpg" alt="Screenshot testimoni dari Klien Reine">
+                </div>
+                <div class="story-details">
+                    <div class="context">
+                        <h3>Konteks Persoalan</h3>
+                        <p>Reine punya ide bisnis keren di bidang tekstil. Masalahnya, dia orangnya main aman, nggak mau keluarin modal gede cuma berdasarkan feeling. Dia pernah coba konsul BaZi di tempat lain, tapi hasilnya "ya gitu deh", general banget. Makanya dia butuh arahan yang super jelas sebelum mempertaruhkan semuanya.</p>
+                    </div>
+                    <div class="pain-point">
+                        <h3>Pain Point Utama</h3>
+                        <ul>
+                            <li>&#10148; <strong>Gak Mau Gambling Modal Gede:</strong> Dia butuh kepastian berbasis data, bukan sekadar "kayaknya bagus nih".</li>
+                            <li>&#10148; <strong>Kapok Dapat Hasil Analisis Ngambang:</strong> Pernah kecewa sama hasil konsultasi yang nggak ngasih solusi konkret.</li>
+                            <li>&#10148; <strong>Cemas Kalau Salah Langkah, Ambyar Semua:</strong> Khawatir kalau investasi besar di awal malah berujung sia-sia.</li>
+                        </ul>
+                    </div>
+                    <div class="solution">
+                        <h3>Output & Solusi Strategis</h3>
+                        <p>Lewat sesi <strong>Dinamis</strong>, Reine dapat:</p>
+                        <ul>
+                            <li>&#10004; <strong>Jawaban Super Detail:</strong> Nggak ada lagi jawaban ngambang. Dia dapat analisis tajam soal potensi dan ranjau di bisnis tekstilnya.</li>
+                            <li>&#10004; <strong>Semua Kabut di Kepalanya Hilang:</strong> Semua keraguan dan kekhawatirannya terjawab. Dia jadi punya clarity soal permasalahan dia.</li>
+                            <li>&#10004; <strong>Jadi PD Buat Gaspol:</strong> Reine sekarang nggak cuma yakin buat mulai, tapi juga punya bekal strategi kapan bulan terbaik untuk launching dan orang seperti apa yang cocok jadi timnya.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <div class="container">
+        <section class="final-cta">
+            <h2>Merasa Terhubung dengan Kisah Mereka?</h2>
+            <p>Setiap kebingungan punya jalan keluar. Mungkin giliranmu sekarang untuk menemukan petamu.</p>
+            <div class="cta-buttons">
+                <!-- Arahkan ke section layanan di halaman utama -->
+                <a href="index.html#layanan" class="btn btn-primary">Lihat Paket Konsultasi</a>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
