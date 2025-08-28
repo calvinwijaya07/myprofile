@@ -102,6 +102,14 @@
         .guarantee-section h3 { font-size: 1.8rem; color: var(--heading-color); margin-bottom: 1rem; }
         .guarantee-section p { max-width: 600px; margin: 0 auto 1.5rem auto; font-size: 1.1rem; }
         .guarantee-section .highlight { font-weight: 600; color: var(--primary-color); }
+        
+        /* BAGIAN BARU: ABOUT ME SECTION */
+        .about-me-section { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: center; max-width: 900px; margin: 0 auto; }
+        .about-me-photo img {
+    width: 100%; border-radius: 50%; box-shadow: 0 10px 30px var(--shadow-color); aspect-ratio: 1 / 1; object-fit: cover; }
+        .about-me-story h3 { font-size: 1.5rem; color: var(--heading-color); margin-bottom: 1rem; }
+        .about-me-story p { margin-bottom: 1rem; }
+        .about-me-story .highlight { font-weight: 600; color: var(--primary-color); }
 
         .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start; }
         .testimonial-card { background-color: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; box-shadow: 0 8px 25px var(--shadow-color); transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
@@ -150,6 +158,8 @@
             .content-section { padding: 4rem 0; }
             .content-section h2 { font-size: 2rem; }
             .premium-packages-container { grid-template-columns: 1fr; }
+            .about-me-section { grid-template-columns: 1fr; text-align: center; }
+            .about-me-photo { max-width: 250px; margin: 0 auto 2rem auto; }
         }
     </style>
 </head>
@@ -213,7 +223,6 @@
             </div>
         </section>
         
-        <!-- SECTION YANG DIUBAH -->
         <section id="mistake" class="content-section">
             <div class="container">
                 <div class="mistake-section">
@@ -337,7 +346,27 @@
             </div>
         </section>
 
-        <section id="testimoni" class="content-section bg-lighter">
+        <!-- BAGIAN BARU: ABOUT ME -->
+        <section id="about-me" class="content-section bg-lighter">
+            <div class="container">
+                <h2 class="centered-title">Kenalan, Yuk! Aku BaZi Buddy-mu</h2>
+                <div class="about-me-section">
+                    <div class="about-me-photo">
+                        <!-- Ganti dengan URL fotomu nanti -->
+                        <img src="pasfoto.png" alt="Foto Calvin Wijaya">
+                    </div>
+                    <div class="about-me-story">
+                        <h3>Bukan Guru, Cuma Teman yang Pernah 'Stuck' Juga</h3>
+                        <p>Jujur, aku terjun ke dunia BaZi bukan karena 'panggilan gaib'. Awalnya sama sepertimu: skeptis. Aku mengenalnya saat berada di titik terendah—bisnis nggak jalan, asmara kandas, rasanya kayak makan cokelat tapi pahit. Nano-nano banget.</p>
+                        <p>Saat itu aku merasa 'stuck', nggak tahu harus ke mana. Sampai akhirnya aku 'iseng' belajar BaZi, dan ternyata... ini bukan klenik. Ini adalah sistem strategi yang logis. Aku sadar, masalahku bukan karena aku nggak mampu, tapi karena aku nggak punya peta dan nggak paham 'medan perang'-ku sendiri.</p>
+                        <p>Makanya aku menyebut diriku <span class="highlight">"BaZi Buddy"</span>. Aku di sini bukan buat jadi 'master' yang serba tahu. Posisiku setara denganmu. Tugasku adalah menjadi teman diskusimu, membantumu menerjemahkan petamu, dan merancang strategi yang paling masuk akal untukmu.</p>
+                        <p>Kalau lagi nggak analisis chart? Aku suka bengong sambil dengerin musik, nonton anime, atau baca apa aja yang bisa dibaca. Sama kan kayak kamu?</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimoni" class="content-section">
             <div class="container">
                 <h2>Kisah Mereka yang Telah Menemukan Kejelasan</h2>
                 <p class="intro">Setiap orang punya cerita unik. Lihat bagaimana mereka mengubah kebingungan menjadi kejelasan dan strategi setelah sesi bersama.</p>
@@ -370,7 +399,7 @@
             </div>
         </section>
 
-        <section id="faq-tnc" class="content-section">
+        <section id="faq-tnc" class="content-section bg-lighter">
             <div class="container">
                 <h2>Pertanyaan Umum & Ketentuan</h2>
                 <div class="tnc-container">
